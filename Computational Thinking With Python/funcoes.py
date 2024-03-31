@@ -1,13 +1,8 @@
-def menu_opcoes():
-    print("Escolha uma opção:")
-    print("1 - Criar conta")
-    print("2 - Fazer login")
-    print("3 - Conheça os Amigos da Saúde")
-    print("4 - Ajuda")
-    print("0 - Sair")
-    return int(input("Digite o número da opção desejada: "))
-
 operacoes = []
+
+email_logado = []
+
+senha_logada = []
 
 cadastros = {
     "Nome":[],
@@ -24,8 +19,14 @@ caractericas_avatar = {
     "Tenis": ""
 }
 
-email_logado = []
-senha_logada = []
+def menu_opcoes():
+    print("Escolha uma opção:")
+    print("1 - Criar conta")
+    print("2 - Fazer login")
+    print("3 - Conheça os Amigos da Saúde")
+    print("4 - Ajuda")
+    print("0 - Sair")
+    return int(input("Digite o número da opção desejada: "))
 
 def criar_conta():
     nome = input("Nome")
