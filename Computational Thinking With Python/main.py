@@ -2,6 +2,10 @@ from funcoes import menu
 
 operacoes = []
 
+email_logado = []
+
+senha_logada = []
+
 cadastros = {
     "Nome":[],
     "Email":[],
@@ -16,9 +20,5 @@ caractericas_avatar = {
     "Short": "",
     "Tenis": ""
 }
-
-email_logado = []
-senha_logada = []
-
 
 menu()
