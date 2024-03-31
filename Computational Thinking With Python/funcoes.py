@@ -29,9 +29,9 @@ def menu_opcoes():
     return int(input("Digite o número da opção desejada: "))
 
 def criar_conta():
-    nome = input("Nome")
-    email = input("Email")
-    senha = input("Senha")
+    nome = input("Nome ")
+    email = input("Email ")
+    senha = input("Senha ")
     if email not in cadastros["Email"]: 
         cadastros["Nome"].append(nome)
         cadastros["Email"].append(email)
@@ -43,8 +43,8 @@ def criar_conta():
 
 def login():
 
-    login = input("Digite o seu email")
-    senha = input("Digite sua senha")
+    login = input("Digite o seu email ")
+    senha = input("Digite sua senha ")
     if login in cadastros["Email"] and senha in cadastros["Senha"]:
         print("Login efetuado com sucesso!")    
         index = cadastros["Email"].index(login)    
@@ -209,21 +209,28 @@ def criar_avatar():
     return 
 
 def ver_avatar():
-    for i in range(len(cadastros["Email"])):
-        if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada:
-            print("Meu avatar:", cadastros["Avatar"][i])
+    try:
+        for i in range(len(cadastros["Email"])):
+            if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada:
+                print("Meu avatar:", cadastros["Avatar"][i])
+    except IndexError:
+            print("Você ainda não criou seu avatar!")
+                
     return
 
 def mudar_avatar():
-    for i in range(len(cadastros["Email"])):
-        if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada:
-            criar_avatar_cabelo()
-            criar_avatar_rosto()
-            criar_avatar_camisa()
-            criar_avatar_short()
-            criar_avatar_tenis()
+    try:
+        for i in range(len(cadastros["Email"])):
+            if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada:
+                criar_avatar_cabelo()
+                criar_avatar_rosto()
+                criar_avatar_camisa()
+                criar_avatar_short()
+                criar_avatar_tenis()
                   
-            cadastros["Avatar"][i] = caractericas_avatar
+                cadastros["Avatar"][i] = caractericas_avatar
+    except IndexError:
+        print("Você ainda não criou seu avatar!")           
     return
 
 def ajuda_paciente():
