@@ -62,11 +62,11 @@ def logout_paciente():
     return
 
 def amigos_da_saude():
-    print("ALjdlkasjdlaksjdoasuhdoasiuhdasdga")
-    return
+    print("Os Amigos da Saúde' são uma equipe dedicada a ajudar pacientes e seus acompanhantes a entender tudo sobre a sua estadia no hospital. Explicando de maneira divertida e simples, tornando cada procedimento menos assustador. Seu objetivo é trazer conforto e segurança durante a sua jornada médica.")
+    return    
 
 def ajuda():
-    print("ajsduisahjdiaoshduias")
+    print("\n Você está no menu principal. Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes:\n 1- Criar Conta(Cadastre sua conta antes de continuar)\n 2- Fazer login(Após criar a sua conta), você precisa efetuar o login para acessar a criação de avatares. \n3- Conheça os Amigos da Saúde(Imprimir um breve texto apresentando as personagens que te acompanharão em sua jornada médica.) \n 0- Sair(Sair do menu e imprimir todas as funções utilizadas.)" )
     return
 
 def criar_avatar_cabelo():
@@ -234,7 +234,7 @@ def mudar_avatar():
     return
 
 def ajuda_paciente():
-    print("shiyudgasudgsauiydsgayduias")
+    print("Você está no menu do paciente! Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes: \n 1- Criar avatar(Crie o avatar que te acompanhará durante sua estadia no hospital) \n2- Ver meu avatar(Visualize as características que você escolheu para o seu avatar.) \n3- Mudar meu avatar(Atualize a aparência do seu avatar.)\n 0-Sair(Efetue o logout e retorne para o menu principal.) ")
     return
 
 def menu_paciente():
