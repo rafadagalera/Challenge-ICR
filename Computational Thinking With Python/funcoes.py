@@ -42,8 +42,8 @@ def criar_conta():
     return 
 
 def login():
-    login = input("Digite o seu email")
-    senha = input("Digite sua senha")
+    login = input("Digite o seu email ")
+    senha = input("Digite sua senha ")
     for i in range(len(cadastros["Email"])):
         if login == cadastros["Email"][i] and senha == cadastros["Senha"][i]:
             print("Login efetuado com sucesso!")    
@@ -67,7 +67,7 @@ def amigos_da_saude():
     return    
 
 def ajuda():
-    print("\n Você está no menu principal. Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes:\n 1- Criar Conta(Cadastre sua conta antes de continuar)\n 2- Fazer login(Após criar a sua conta), você precisa efetuar o login para acessar a criação de avatares. \n3- Conheça os Amigos da Saúde(Imprimir um breve texto apresentando as personagens que te acompanharão em sua jornada médica.) \n 0- Sair(Sair do menu e imprimir todas as funções utilizadas.)" )
+    print("\n Você está no menu principal. Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes:\n 1- Criar Conta(Cadastre sua conta antes de continuar)\n 2- Fazer login(Após criar a sua conta), você precisa efetuar o login para acessar a criação de avatares. \n 3- Conheça os Amigos da Saúde(Imprimir um breve texto apresentando as personagens que te acompanharão em sua jornada médica.) \n 0- Sair(Sair do menu e imprimir todas as funções utilizadas.)" )
     return
 
 def criar_avatar_cabelo():
@@ -215,21 +215,27 @@ def ver_avatar():
     return
 
 def mudar_avatar():
-    for i in range(len(cadastros["Email"])):
-        if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada and cadastros["Avatar"][i] != "":
-            criar_avatar_cabelo()
-            criar_avatar_rosto()
-            criar_avatar_camisa()
-            criar_avatar_short()
-            criar_avatar_tenis()
-            
-            cadastros["Avatar"][i] = caractericas_avatar
-        else:
-            print("Você não possui um avatar cadastrado")
-            pass
+    try:      
+        for i in range(len(cadastros["Email"])):
+            if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada and cadastros["Avatar"][i] != "":
+                criar_avatar_cabelo()
+                criar_avatar_rosto()
+                criar_avatar_camisa()
+                criar_avatar_short()
+                criar_avatar_tenis()
+                
+                cadastros["Avatar"][i] = caractericas_avatar
+            else:
+                print("Você não possui um avatar cadastrado")
+                pass
+    except IndexError:
+        print("Você não possui um avatar cadastrado")
+        pass
+                  
+
 
 def ajuda_paciente():
-    print("Você está no menu do paciente! Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes: \n 1- Criar avatar(Crie o avatar que te acompanhará durante sua estadia no hospital) \n2- Ver meu avatar(Visualize as características que você escolheu para o seu avatar.) \n3- Mudar meu avatar(Atualize a aparência do seu avatar.)\n 0-Sair(Efetue o logout e retorne para o menu principal.) ")
+    print("Você está no menu do paciente! Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes: \n 1- Criar avatar(Crie o avatar que te acompanhará durante sua estadia no hospital) \n 2- Ver meu avatar(Visualize as características que você escolheu para o seu avatar.) \n 3- Mudar meu avatar(Atualize a aparência do seu avatar.) \n 0-Sair(Efetue o logout e retorne para o menu principal.) ")
     return
 
 def menu_paciente():
