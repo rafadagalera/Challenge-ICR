@@ -42,17 +42,18 @@ def criar_conta():
     return 
 
 def login():
-
-    login = input("Digite o seu email ")
-    senha = input("Digite sua senha ")
-    if login in cadastros["Email"] and senha in cadastros["Senha"]:
-        print("Login efetuado com sucesso!")    
-        index = cadastros["Email"].index(login)    
-        email_logado.append(cadastros["Email"][index])
-        senha_logada.append(cadastros["Senha"][index])     
-        print(f"Bem vindo {email_logado[0]}!")
-    else:
-        print("Usuário ou Senha inválido.")
+    login = input("Digite o seu email")
+    senha = input("Digite sua senha")
+    for i in range(len(cadastros["Email"])):
+        if login == cadastros["Email"][i] and senha == cadastros["Senha"][i]:
+            print("Login efetuado com sucesso!")    
+            index = cadastros["Email"].index(login)    
+            email_logado.append(cadastros["Email"][index])
+            senha_logada.append(cadastros["Senha"][index])     
+            print(f"Bem vindo {email_logado[0]}!")
+        else:
+            print("Usuário ou senha incorreto!.")
+            
     return  
 
 def logout_paciente():
@@ -74,7 +75,6 @@ def criar_avatar_cabelo():
     print("1 - Careca")
     print("2 - Cabelo curto")
     print("3 - Cabelo longo")
-    print("0 - Sair")
 
 
     while True:
@@ -100,7 +100,6 @@ def criar_avatar_rosto():
     print("1 - Redondo")
     print("2 - Quadrado")
     print("3 - Oval")
-    print("0 - Sair")
 
 
     while True:
@@ -125,7 +124,6 @@ def criar_avatar_camisa():
     print("1 - Vermelha")
     print("2 - Azul")
     print("3 - Verde")
-    print("0 - Sair")
 
 
     while True:
@@ -150,7 +148,6 @@ def criar_avatar_short():
     print("1 - Short preto")
     print("2 - Short verde")
     print("3 - Short laranja")
-    print("0 - Sair")
 
 
     while True:
@@ -175,7 +172,6 @@ def criar_avatar_tenis():
     print("1 - Tenis vermelho")
     print("2 - Tenis verde")
     print("3 - Tenis azul")
-    print("0 - Sair")
 
     while True:
         opcao = int(input("Digite o número da opção desejada: "))
@@ -219,19 +215,18 @@ def ver_avatar():
     return
 
 def mudar_avatar():
-    try:
-        for i in range(len(cadastros["Email"])):
-            if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada:
-                criar_avatar_cabelo()
-                criar_avatar_rosto()
-                criar_avatar_camisa()
-                criar_avatar_short()
-                criar_avatar_tenis()
-                  
-                cadastros["Avatar"][i] = caractericas_avatar
-    except IndexError:
-        print("Você ainda não criou seu avatar!")           
-    return
+    for i in range(len(cadastros["Email"])):
+        if cadastros["Email"] == email_logado and cadastros["Senha"] == senha_logada and cadastros["Avatar"][i] != "":
+            criar_avatar_cabelo()
+            criar_avatar_rosto()
+            criar_avatar_camisa()
+            criar_avatar_short()
+            criar_avatar_tenis()
+            
+            cadastros["Avatar"][i] = caractericas_avatar
+        else:
+            print("Você não possui um avatar cadastrado")
+            pass
 
 def ajuda_paciente():
     print("Você está no menu do paciente! Leia o texto apresentado no terminal e escolha uma opção dentre as seguintes: \n 1- Criar avatar(Crie o avatar que te acompanhará durante sua estadia no hospital) \n2- Ver meu avatar(Visualize as características que você escolheu para o seu avatar.) \n3- Mudar meu avatar(Atualize a aparência do seu avatar.)\n 0-Sair(Efetue o logout e retorne para o menu principal.) ")
@@ -248,47 +243,59 @@ def menu_paciente():
 
 def menu():
     while True:
-        opcao = menu_opcoes()
-        if opcao == 1:
-            criar_conta()
-            operacoes.append("Conta criada")
-        elif opcao == 2:
-            login()
-            operacoes.append("Login efetuado")
-            while True:
-                opcao_paciente = menu_paciente()    
-                if opcao_paciente == 1:
-                        criar_avatar()
-                        operacoes.append("Avatar criado")
-                elif opcao_paciente == 2:
-                        ver_avatar()
-                        operacoes.append("Vizualizou o avatar")
-                elif opcao_paciente == 3:
-                        mudar_avatar()
-                        operacoes.append("Mudou o avatar")
-                elif opcao_paciente == 4:
-                        ajuda_paciente()
-                        operacoes.append("Acessou o comando de Ajuda para pacientes logados")
-                elif opcao_paciente == 0:
-                        logout_paciente()
-                        operacoes.append("Logout efetuado")
-                        break
+        try:            
+            opcao = menu_opcoes()
+            if opcao == 1:
+                criar_conta()
+                operacoes.append("Conta criada")
+                continue
+            elif opcao == 2:
+                login()
+                if len(email_logado) != 0: 
+                    operacoes.append("Login efetuado")
+                    while True:
+                        try:                             
+                            opcao_paciente = menu_paciente()    
+                            if opcao_paciente == 1:
+                                    criar_avatar()
+                                    operacoes.append("Avatar criado")
+                            elif opcao_paciente == 2:
+                                    ver_avatar()
+                                    operacoes.append("Vizualizou o avatar")
+                            elif opcao_paciente == 3:
+                                    mudar_avatar()
+                                    operacoes.append("Mudou o avatar")
+                            elif opcao_paciente == 4:
+                                    ajuda_paciente()
+                                    operacoes.append("Acessou o comando de Ajuda para pacientes logados")
+                            elif opcao_paciente == 0:
+                                    logout_paciente()
+                                    operacoes.append("Logout efetuado")
+                                    break
+                        except ValueError:
+                             print("\nUtilize apenas digitos! Tente novamente.\n")
+                             continue
+                else:
+                    continue       
 
-        elif opcao == 3:
-            amigos_da_saude()
-            operacoes.append("Acessou a página Amigos da Saúde")
-        elif opcao == 4:
-            ajuda()
-            operacoes.append("Acessou o comando de Ajuda do menu inicial")
-        elif opcao == 0:
-            print("Saindo do menu, até mais!")
-            operacoes.append("Saiu do programa")
-            break   
-        else:
-            print("Opção inválida. Tente novamente.")
+            elif opcao == 3:
+                amigos_da_saude()
+                operacoes.append("Acessou a página Amigos da Saúde")
+            elif opcao == 4:
+                ajuda()
+                operacoes.append("Acessou o comando de Ajuda do menu inicial")
+            elif opcao == 0:
+                print("Saindo do menu, até mais!")
+                operacoes.append("Saiu do programa")
+                break   
+            else:
+                print("Opção inválida. Tente novamente.")
+        except ValueError:
+            print("\nUtilize apenas digitos! Tente novamente.\n")
+            continue
     for item in operacoes:
         print("Operação realizada: ", item)     
-    return
+    return        
               
 
                   
