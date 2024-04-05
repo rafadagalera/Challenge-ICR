@@ -1,0 +1,69 @@
+// Definição dos pinos associados aos botões de resposta
+int greenBtn = 2;   // Botão verde está conectado ao pino digital 2
+int blueBtn = 3;    // Botão azul está conectado ao pino digital 3
+int yellowBtn = 4;  // Botão amarelo está conectado ao pino digital 4
+
+int score = 0;      // Variável para armazenar a pontuação do usuário
+
+void setup() {
+  Serial.begin(9600);  // Inicia a comunicação serial com uma taxa de 9600 bps
+
+  // Configura os pinos dos botões como entradas
+  pinMode(greenBtn, INPUT);
+  pinMode(blueBtn, INPUT);
+  pinMode(yellowBtn, INPUT);
+}
+
+void loop() {
+  // Exibe uma série de perguntas sobre tomografia no monitor serial
+  Serial.println("Vamos fazer um quiz sobre a tomografia! Mostre o que você aprendeu com o nosso vídeo.");
+  Serial.println("O que a tomografia nos ajuda a ver dentro do nosso corpo?");
+  Serial.println("Verde- Ossos");
+  Serial.println("Azul- Músculos");
+  Serial.println("Amarelo- Órgãos");
+  delay(10000);  // Aguarda 10 segundos para que o usuário responda à pergunta
+
+  // Verifica qual botão foi pressionado como resposta à primeira pergunta
+  if (digitalRead(blueBtn) == HIGH && digitalRead(greenBtn) == LOW && digitalRead(yellowBtn) == LOW) {
+    Serial.println("Correto!");  // Se o botão azul foi pressionado, a resposta está correta
+    score++;  // Incrementa a pontuação
+  } else {
+    Serial.println("Incorreto!");  // Se outro botão foi pressionado ou nenhum botão foi pressionado, a resposta está incorreta
+  }
+
+  // Exibe a segunda pergunta e espera a resposta do usuário
+  Serial.println("Como é feita uma tomografia?");
+  Serial.println("Verde- Com uma câmera que tira fotos do interior do corpo");
+  Serial.println("Azul- Com um microscópio");
+  Serial.println("Amarelo- Com um celular");
+  delay(10000);
+
+  // Verifica qual botão foi pressionado como resposta à segunda pergunta
+  if (digitalRead(greenBtn) == HIGH && digitalRead(blueBtn) == LOW && digitalRead(yellowBtn) == LOW) {
+    Serial.println("Correto!");
+    score++;
+  } else {
+    Serial.println("Incorreto!");
+  }
+
+  // Exibe a terceira pergunta e espera a resposta do usuário
+  Serial.println("Por que é necessário ficar parado durante uma tomografia?");
+  Serial.println("Verde- Para não se machucar");
+  Serial.println("Azul- Para que a máquina não quebre"); 
+  Serial.println("Amarelo- Para evitar que os movimentos estraguem as imagens");
+  delay(10000);
+
+  // Verifica qual botão foi pressionado como resposta à terceira pergunta
+  if (digitalRead(greenBtn) == LOW && digitalRead(blueBtn) == LOW && digitalRead(yellowBtn) == HIGH) {
+    Serial.println("Correto!");
+    score++;
+  } else {
+    Serial.println("Incorreto!");
+  }
+
+  // Exibe a pontuação final e reinicia a pontuação para o próximo ciclo do quiz
+  Serial.print("Seu placar é: ");
+  Serial.println(score * 10);  // Multiplica a pontuação por 10 para exibir um valor mais legível
+  score = 0;  // Reinicia a pontuação
+  delay(20000);  // Aguarda 20 segundos antes de começar o próximo ciclo do quiz
+}
