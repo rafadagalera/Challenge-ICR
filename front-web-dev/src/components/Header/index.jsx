@@ -1,33 +1,40 @@
 import { useNavigate } from "react-router-dom";
-import "./style.css";
+import amigosSaudeLogo from "../../assets/amigos-saude-logo.png";
+import { StyledHeader } from "./style";
 
-const Header = () => {
-    const navigate = useNavigate()
+export const Header = () => {
+    const navigate = useNavigate();
 
     return (
-        <header className="container">
-            <h1>logo</h1>
+        <StyledHeader className='container'>
+            <img src={amigosSaudeLogo} alt="" className=''/>
             <nav>
                 <ul>
                     <li>
-                        <p onClick={() => navigate('/')}>Home</p>
+                        <p onClick={() => navigate("/")}>Home</p>
                     </li>
                     <li>
-                        <p>Criar meu personagem</p>
+                        <p onClick={() => navigate("/create-avatar")}>
+                            Criar meu personagem
+                        </p>
                     </li>
                     <li>
-                        <p>Amigos da saúde</p>
+                        <p onClick={() => navigate("/amigos-saude")}>
+                            Amigos da saúde
+                        </p>
                     </li>
                     <li>
-                        <p>Meu perfil</p>
+                        <p onClick={() => navigate("/login")}>Meu perfil</p>
                     </li>
                     <li>
-                        <p>Ajuda</p>
+                        <p onClick={() => navigate("/ajuda")}>Ajuda</p>
                     </li>
                 </ul>
             </nav>
-        </header>
+
+            <div className='icone_div'>
+                <p>ICONE</p>
+            </div>
+        </StyledHeader>
     );
 };
-
-export default Header;
