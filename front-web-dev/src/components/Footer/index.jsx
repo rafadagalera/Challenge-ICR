@@ -1,11 +1,9 @@
-import './style.css'
+import { StyledFooter } from "./style";
 
-const Footer = () => {
-    return(
-        <footer className='container'>
-            <h1>teste</h1>
-        </footer>
-    )
-}
-
-export default Footer
+export const Footer = () => {
+    return (
+        <StyledFooter>
+            <p>Todos os direitos reservados a QuickSyntax.</p>
+        </StyledFooter>
+    );
+};
